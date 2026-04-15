@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/1 - Api/">
+    <Project Path="1 - API/ProdutoTechfin.Api/ProdutoTechfin.Api.csproj" Id="d05d23a8-ba14-46bf-96da-79a91a34cd87" />
+  </Folder>
+  <Folder Name="/2 - Application/">
+    <Project Path="2 - Application/ProdutoTechfin.Application/ProdutoTechfin.Application.csproj" Id="71fcb602-0146-4377-8676-e551206a41b0" />
+  </Folder>
+  <Folder Name="/3 - Domain/">
+    <Project Path="3 - Domain/ProdutoTechfin.Domain/ProdutoTechfin.Domain.csproj" Id="48fce8c6-9ad6-4a9c-970c-1b25ba6caa84" />
+  </Folder>
+  <Folder Name="/4 - Infrastructure/">
+    <Project Path="4 - Infrastructure/ProdutoTechfin.Infrastructure/ProdutoTechfin.Infrastructure.csproj" Id="28143a41-dbe3-44ee-9c06-454ffd56f110" />
+  </Folder>
+  <Folder Name="/5 - IoC/">
+    <Project Path="5 - IoC/ProdutoTechfin.IoC/ProdutoTechfin.IoC.csproj" Id="840ab487-932b-4dfa-8d9d-bcae58a91c1e" />
+  </Folder>
+  <Folder Name="/6 - CrossCutting/">
+    <Project Path="6 - CrossCutting/ProdutoTechfin.CrossCutting/ProdutoTechfin.CrossCutting.csproj" Id="9cabeef5-bbd2-4a3f-b0fc-da53764e215a" />
+  </Folder>
+</Solution>

@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using ProdutoTechfin.CrossCutting.Logging;
 
 namespace ProdutoTechfin.Application.Behaviors
 {
@@ -21,24 +23,20 @@ namespace ProdutoTechfin.Application.Behaviors
             CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
+            var stopwatch = Stopwatch.StartNew();
+
+            using var scope = _logger.BeginOperationScope(requestName);
 
             _logger.LogInformation(
                 "Handling {RequestName} with payload {@Request}",
-                requestName,
-                request);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+                requestName, request);
 
             try
             {
                 var response = await next();
-
                 stopwatch.Stop();
 
-                _logger.LogInformation(
-                    "Handled {RequestName} in {ElapsedMs}ms",
-                    requestName,
-                    stopwatch.ElapsedMilliseconds);
+                _logger.LogOperationResult(requestName, success: true, elapsedMs: stopwatch.ElapsedMilliseconds);
 
                 return response;
             }
@@ -46,11 +44,15 @@ namespace ProdutoTechfin.Application.Behaviors
             {
                 stopwatch.Stop();
 
-                _logger.LogError(
-                    ex,
-                    "Error handling {RequestName} after {ElapsedMs}ms",
+                _logger.LogError(ex,
+                    "Unhandled exception in {RequestName}",
+                    requestName);
+
+                _logger.LogOperationResult(
                     requestName,
-                    stopwatch.ElapsedMilliseconds);
+                    success: false,
+                    elapsedMs: stopwatch.ElapsedMilliseconds,
+                    detail: ex.Message);
 
                 throw;
             }

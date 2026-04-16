@@ -7,7 +7,7 @@ namespace ProdutoTechfin.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplicationExtensions(this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
             {

@@ -17,7 +17,10 @@ public class DatabaseInitializer
 
     public async Task InitializeAsync(CancellationToken cancellationToken = default)
     {
-        await _context.Database.MigrateAsync(cancellationToken);
+        if (_context.Database.IsRelational())
+        {
+            await _context.Database.MigrateAsync(cancellationToken);
+        }
         await SeedAsync(cancellationToken);
     }
 

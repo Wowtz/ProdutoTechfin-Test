@@ -1,0 +1,58 @@
+<po-page-edit
+  [p-title]="pageTitle"
+  (p-save)="save()"
+  (p-cancel)="cancel()">
+
+  <po-loading-overlay
+    [p-screen-lock]="true"
+    p-text="Carregando..."
+    *ngIf="isLoading">
+  </po-loading-overlay>
+
+  <form [formGroup]="form">
+
+    <po-divider p-label="Informações do Produto"></po-divider>
+
+    <div class="po-row">
+      <po-input
+        class="po-md-6"
+        p-label="Nome"
+        p-placeholder="Informe o nome do produto"
+        formControlName="name"
+        [p-error-pattern]="'Nome é obrigatório e deve ter no máximo 200 caracteres'"
+        [p-show-required]="true">
+      </po-input>
+
+      <po-input
+        class="po-md-6"
+        p-label="Descrição"
+        p-placeholder="Informe a descrição do produto"
+        formControlName="description">
+      </po-input>
+    </div>
+
+    <div class="po-row">
+      <po-decimal
+        class="po-md-3"
+        p-label="Preço"
+        p-placeholder="0,00"
+        formControlName="price"
+        [p-decimals-length]="2"
+        [p-thousand-maxlength]="13"
+        [p-show-required]="true"
+        [p-error-pattern]="'Preço é obrigatório e deve ser maior ou igual a zero'">
+      </po-decimal>
+
+      <po-number
+        class="po-md-3"
+        p-label="Estoque"
+        p-placeholder="0"
+        formControlName="stockQuantity"
+        [p-error-pattern]="'Estoque é obrigatório e deve ser maior ou igual a zero'"
+        [p-show-required]="true">
+      </po-number>
+    </div>
+
+  </form>
+
+</po-page-edit>

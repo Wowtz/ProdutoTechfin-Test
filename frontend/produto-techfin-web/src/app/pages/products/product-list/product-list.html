@@ -1,0 +1,25 @@
+<po-page-list
+  p-title="Produtos"
+  [p-actions]="pageActions">
+
+  <po-table
+    [p-columns]="columns"
+    [p-items]="products"
+    [p-loading]="isLoading"
+    [p-selectable]="true"
+    (p-selected)="onSelectionChange($event)"
+    (p-unselected)="onUnselectionChange($event)"
+    p-sort="true"
+    p-striped="true">
+  </po-table>
+
+</po-page-list>
+
+<po-modal
+  #confirmDeleteModal
+  p-title="Confirmar Exclusão"
+  [p-primary-action]="confirmDeleteActions[0]"
+  [p-secondary-action]="confirmDeleteActions[1]">
+  <p>Deseja realmente excluir o produto <strong>{{ productToDelete?.name }}</strong>?</p>
+  <p>Esta ação não pode ser desfeita.</p>
+</po-modal>

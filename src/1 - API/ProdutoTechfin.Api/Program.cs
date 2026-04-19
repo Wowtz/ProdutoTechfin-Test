@@ -16,7 +16,7 @@ builder.Services.AddCustomSwagger();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+await using (var scope = app.Services.CreateAsyncScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
     await initializer.InitializeAsync();

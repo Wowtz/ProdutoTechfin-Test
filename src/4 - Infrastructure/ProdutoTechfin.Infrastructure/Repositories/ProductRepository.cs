@@ -16,10 +16,11 @@ namespace ProdutoTechfin.Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Products
+            var products = await _context.Products
                 .AsNoTracking()
-                .OrderBy(p => p.Name.Value)
                 .ToListAsync(cancellationToken);
+
+            return products.OrderBy(p => p.Name.Value);
         }
 
         public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
